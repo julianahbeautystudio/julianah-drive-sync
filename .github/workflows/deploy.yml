@@ -59,7 +59,7 @@ jobs:
                           mode=dropbox.files.WriteMode.overwrite
                       )
 
-                  print("Uploaded:", dropbox_path)
+                  print(repr(dropbox_path))
 
           print("Dropbox synchronization complete.")
           EOF
