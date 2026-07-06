@@ -50,7 +50,29 @@ jobs:
 
                   relative = os.path.relpath(local_path, LOCAL_ROOT)
 
-                  dropbox_path = DROPBOX_ROOT + "/" + relative.replace("\\", "/")
+                  # Normalize path separators
+                  relative = relative.replace("\\", "/")
+
+                  # Build original path (for logging)
+                  original_path = DROPBOX_ROOT + "/" + relative
+
+                  # Remove trailing spaces and periods from every path component
+                  parts = [
+                      part.rstrip(" .")
+                      for part in relative.split("/")
+                  ]
+
+                  # Remove empty path components
+                  parts = [part for part in parts if part]
+
+                  # Final Dropbox path
+                  dropbox_path = DROPBOX_ROOT + "/" + "/".join(parts)
+
+                  # Log if the path was sanitized
+                  if original_path != dropbox_path:
+                      print("SANITIZED:")
+                      print("  FROM:", repr(original_path))
+                      print("    TO:", repr(dropbox_path))
 
                   print("START:", repr(dropbox_path))
 
