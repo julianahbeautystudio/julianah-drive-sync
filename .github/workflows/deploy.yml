@@ -52,16 +52,16 @@ jobs:
 
                   dropbox_path = DROPBOX_ROOT + "/" + relative.replace("\\", "/")
 
-                 print("START:", repr(dropbox_path))
+                  print("START:", repr(dropbox_path))
 
-with open(local_path, "rb") as f:
-    dbx.files_upload(
-        f.read(),
-        dropbox_path,
-        mode=dropbox.files.WriteMode.overwrite
-    )
+                  with open(local_path, "rb") as f:
+                      dbx.files_upload(
+                          f.read(),
+                          dropbox_path,
+                          mode=dropbox.files.WriteMode.overwrite
+                      )
 
-print("DONE :", repr(dropbox_path))
+                  print("DONE :", repr(dropbox_path))
 
           print("Dropbox synchronization complete.")
           EOF
